@@ -1,0 +1,44 @@
+-- show column names and blocks 
+
+SELECT b.col, p.name, max(b.blocknum) AS "max"
+FROM stv_blocklist b, stv_tbl_perm p
+WHERE b.tbl = p.id
+and p.name like 't_%'
+GROUP BY p.name, b.col
+ORDER BY p.name,  b.col;
+
+-- show column blocks
+select col, max(blocknum)
+from stv_blocklist b, stv_tbl_perm p
+where (b.tbl=p.id) and name ='t_samples'
+group by name, col
+order by col;
+
+-- query data dictionary
+select * from pg_constraint;
+select * from pg_database;
+select * from pg_group;
+select * pg_settings
+select * from pg_statistic;
+
+-- query table data 
+select db_id, id, name, sum(rows) as mysum from
+stv_tbl_perm  group by db_id, id, name order by mysum desc;
+
+-- query data by slices and size on disk
+SELECT Sum(b.blocknum * 1048576 / 1024 / 1024 / 1024) AS gbytes 
+FROM   pg_catalog.stv_tbl_perm p 
+       JOIN (SELECT bl.tbl, 
+                    bl.slice, 
+                    Count(bl.blocknum) AS blocknum 
+             FROM   pg_catalog.stv_blocklist bl 
+             GROUP  BY bl.tbl, 
+                       bl.slice) b 
+         ON b.tbl = p.id 
+            AND b.slice = p.slice 
+GROUP  BY p.db_id 
+
+-- query table encoding 
+select "column", type, encoding
+from pg_table_def 
+where tablename = 't_samples';
