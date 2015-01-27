@@ -1,0 +1,98 @@
+SELECT DISTINCT s1.trip_id AS trip_id
+FROM   (SELECT trip_id,
+               reading_id,
+               ( accel_lat ) / 980.665  AS lat,
+               ( accel_lon ) / 980.665  AS lon,
+               ( accel_vert ) / 980.665 AS ver
+        FROM   rs.t_samples) AS s1
+WHERE  s1.lat > 1.9
+        OR s1.lat < -1.9
+        OR s1.lon > 1.9
+        OR s1.lon < -1.9
+        OR s1.ver > 1.9
+        OR s1.ver < -1.9;
+        
+        
+        
+        
+SELECT  s1.trip_id AS trip_id,   s1.reading_id AS reading_id
+FROM   (SELECT trip_id,
+               reading_id,
+               ( accel_lat ) / 980.665  AS lat,
+               ( accel_lon ) / 980.665  AS lon,
+               ( accel_vert ) / 980.665 AS ver
+        FROM   rs.t_samples ) AS s1
+WHERE  s1.lat > 1.9
+        OR s1.lat < -1.9
+        OR s1.lon > 1.9
+        OR s1.lon < -1.9
+        OR s1.ver > 1.9
+        OR s1.ver < -1.9;
+
+
+        SELECT DISTINCT s1.reading_id
+FROM   (SELECT trip_id,
+               reading_id,
+               ( accel_lat ) / 980.665  AS lat,
+               ( accel_lon ) / 980.665  AS lon,
+               ( accel_vert ) / 980.665 AS ver
+        FROM   rs.t_samples) AS s1
+WHERE  s1.lat > 1.9
+        OR s1.lat < -1.9
+        OR s1.lon > 1.9
+        OR s1.lon < -1.9
+        OR s1.ver > 1.9
+        OR s1.ver < -1.9;
+
+select max(id) from rs.t_devices;
+
+
+        SELECT DISTINCT s1.trip_id AS trip_id
+FROM   (SELECT trip_id,
+               reading_id,
+               ( accel_lat ) / 980.665  AS lat,
+               ( accel_lon ) / 980.665  AS lon,
+               ( accel_vert ) / 980.665 AS ver
+        FROM   rs.t_samples ) AS s1
+WHERE  s1.lat > 1.9
+        OR s1.lat < -1.9
+        OR s1.lon > 1.9
+        OR s1.lon < -1.9
+        OR s1.ver > 1.9
+        OR s1.ver < -1.9;
+
+
+select count (*) from rs.t_suspect_trips;
+
+SELECT DISTINCT s1.trip_id AS trip_id
+FROM   (SELECT trip_id,
+               reading_id,
+               ( accel_lat ) / 980.665  AS lat,
+               ( accel_lon ) / 980.665  AS lon,
+               ( accel_vert ) / 980.665 AS ver
+        FROM   rs.t_samples) AS s1
+WHERE  s1.lat > 1.9
+        OR s1.lat < -1.9
+        OR s1.lon > 1.9
+        OR s1.lon < -1.9
+        OR s1.ver > 1.9
+        OR s1.ver < -1.9;
+
+
+select min(trip_id) from rs.t_samples;
+
+SELECT Sum(s2.trip_id)
+FROM   (SELECT Count(s1.trip_id) AS trip_id
+        FROM   (SELECT trip_id,
+                       reading_id,
+                       ( accel_lat ) / 980.665  AS lat,
+                       ( accel_lon ) / 980.665  AS lon,
+                       ( accel_vert ) / 980.665 AS ver
+                FROM   rs.t_samples) AS s1
+        WHERE  s1.lat > 1.9
+                OR s1.lat < -1.9
+                OR s1.lon > 1.9
+                OR s1.lon < -1.9
+                OR s1.ver > 1.9
+                OR s1.ver < -1.9
+        GROUP  BY s1.trip_id) AS s2
