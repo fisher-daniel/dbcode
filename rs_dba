@@ -42,3 +42,11 @@ GROUP  BY p.db_id
 select "column", type, encoding
 from pg_table_def 
 where tablename = 't_samples';
+
+--show tables by schema
+select * from pg_table_def 
+where schemaname = 'rs';
+
+
+
+
