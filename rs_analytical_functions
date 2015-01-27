@@ -1,0 +1,13 @@
+-- percent rank
+
+select reading_id, accel_lon, percent_rank()
+over (partition by reading_id order by accel_lon)
+from rs.t_samples t1
+limit 1000;
+
+-- cumelitive distrubution
+
+select reading_id, accel_lon, cume_dist()
+over (partition by reading_id order by accel_lon)
+from rs.t_samples t1
+limit 1000;
