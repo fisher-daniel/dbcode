@@ -1,0 +1,60 @@
+-- all trips
+select count(distinct t2.id),  Decode(hardware, 4, '3030', '3000')    
+from rs.t_devices t1, rs.t_trips t2 
+where  t1.id= t2.device_id
+group by Decode(hardware, 4, '3030', '3000');
+
+-- disconnected trips 
+select count(distinct t2.id),  Decode(hardware, 4, '3030', '3000')    
+from rs.t_devices t1, rs.t_trips t2 
+where  disconnected_at is not null
+and t1.id= t2.device_id
+group by Decode(hardware, 4, '3030', '3000');
+
+-- count of devices
+SELECT Count(distinct id), 
+       Decode(hardware, 4, '3030', 
+                        '3000') 
+FROM   rs.t_devices 
+GROUP  BY Decode(hardware, 4, '3030', 
+                           '3000'); 
+                           
+                           
+-- disconnected trips v normal trips
+select count(distinct t2.id),  Decode(disconnected_at, null, 'N', 'Y')    
+from rs.t_devices t1, rs.t_trips t2 
+where t1.id = t2.device_id
+group by Decode(disconnected_at, null, 'N', 'Y') ;
+
+46,047,574
+
+select 45978844 + 437313;
+
+--count all trips 
+
+select count(distinct t2.id)    
+from rs.t_trips t2;
+
+
+-- count trips with a join to the 
+
+select count(distinct t2.id) 
+from rs.t_devices t1 
+inner join rs.t_trips t2 
+on t1.id = t2.device_id;
+45984220
+
+
+select count(distinct t2.id) 
+from rs.t_devices t1,  rs.t_trips t2 
+where t1.id = t2.device_id;
+
+45984220
+
+
+select count(distinct t2.id) 
+from rs.t_devices t1 
+right outer join rs.t_trips t2 
+on t1.id = t2.device_id;
+
+46,047,574
