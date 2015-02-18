@@ -11,14 +11,14 @@
 
 mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > common_data_production.sql;
 
-mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > erp.sql;
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p erp.sql > erp.sql;
 
-mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > evogi.sql;
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi.sql > evogi.sql;
 
-mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > evogi_comms.sql;
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi_comms.sql > evogi_comms.sql;
 
-mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > evogi_inthub.sql;
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi_inthub > evogi_inthub.sql;
 
-mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > evogi_time_entry.sql;
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi_time_entry > evogi_time_entry.sql;
 
-mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > evogi_users.sql;
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi_users > evogi_users.sql;
