@@ -1,5 +1,4 @@
 /*using sql dump migrate database schemas 1-7
-
 1.common_data_production
 2.erp
 3.evogi
@@ -7,7 +6,6 @@
 5.evogi_inthub
 6.evogi_time_entry
 7.evogi_users */
-
 
 -- **migrate one database instance at a time this passes the database instance in and creates a database dump (sql) file as the same name 
 
