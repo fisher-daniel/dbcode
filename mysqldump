@@ -1,0 +1,26 @@
+/*using sql dump migrate database schemas 1-7
+
+1.common_data_production
+2.erp
+3.evogi
+4.evogi_comms
+5.evogi_inthub
+6.evogi_time_entry
+7.evogi_users */
+
+
+-- **migrate one database instance at a time this passes the database instance in and creates a database dump (sql) file as the same name 
+
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > common_data_production.sql;
+
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > erp.sql;
+
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > evogi.sql;
+
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > evogi_comms.sql;
+
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > evogi_inthub.sql;
+
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > evogi_time_entry.sql;
+
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > evogi_users.sql;
