@@ -21,4 +21,4 @@ mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 330
 
 mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi_time_entry > evogi_time_entry.sql
 
-mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi_users > evogi_users.sql
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogiusers > evogiusers.sql
