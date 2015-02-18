@@ -1,0 +1,19 @@
+--check net and display network statistics and output
+---Displays active TCP connections, however, addresses and port numbers are expressed numerically 
+
+netstat -ln | grep mysql
+
+
+--Displays all active connections and the TCP and UDP ports on which the computer is listening.
+
+
+netstat -an | grep 3306
+
+you should see a listener 
+
+
+--check newtork
+
+look into /etc/mysql and cat my.conf or similair.  check it has a port and  socket.   port should be 3306 based on your connect string.
+
+make sure there is not a link called skip networking or similair.
