@@ -11,11 +11,11 @@
 
 mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p common_data_production > common_data_production.sql;
 
-mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p erp.sql > erp.sql;
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p erp > erp.sql;
 
-mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi.sql > evogi.sql;
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi > evogi.sql;
 
-mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi_comms.sql > evogi_comms.sql;
+mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi_comms > evogi_comms.sql;
 
 mysqldump -h sbox-ihch.cuo0ggerhasj.us-west-2.rds.amazonaws.com -u inthub -P 3306 -p evogi_inthub > evogi_inthub.sql;
 
