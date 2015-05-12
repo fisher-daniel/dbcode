@@ -1,0 +1,51 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: encrypts db table columns 
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE  `p_encrypt` ()
+BEGIN
+
+DECLARE v_finished INTEGER DEFAULT 0;
+
+--declare variables for the db, table and col names
+DECLARE v_db varchar(100) DEFAULT "";
+DECLARE v_tab varchar(100) DEFAULT "";
+DECLARE v_col varchar(100) DEFAULT "";
+
+ -- declare col cursor
+DECLARE col_cur CURSOR FOR 
+select database_name, table_name, column_name  from t_columns_encrypt;
+ 
+ -- declare NOT FOUND handler
+ DECLARE CONTINUE HANDLER 
+        FOR NOT FOUND SET v_finished = 1;
+
+OPEN col_cur;
+
+get_col: LOOP
+--fetch the cursor record value into db, table and column variable
+ FETCH col_cur INTO v_db, v_tab, v_col;
+ IF v_finished = 1 THEN 
+ LEAVE get_col;
+ END IF;
+ -- build up dynamic sql statement by setting @variable
+SET @db_name:= v_db;
+SET @table_name:= v_tab;
+SET @column_name:= v_col;
+-- concate together to a single update 
+SET @sql:=CONCAT('update ', @db_name, '.', @table_name, ' set ', @column_name, ' := ENCRYPT(',@column_name, ');');
+PREPARE dynamic_statement FROM @sql;
+--execute the update
+EXECUTE dynamic_statement;
+DEALLOCATE PREPARE dynamic_statement;
+
+END LOOP get_col;
+
+END $$
+
+DELIMITER ;
+
+drop procedure p_encrypt;
+call p_encrypt;
