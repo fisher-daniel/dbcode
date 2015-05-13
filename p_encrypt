@@ -1,7 +1,7 @@
 -- -----------------------------------------------------------------------------------
 -- File Name    : https://github.com/fisher-daniel/dbcode/edit/master/p_encrypt
 -- Author       : Dan Fisher
--- Description  : encrypt columns 
+-- Description  : get columns to be encrypted from ref table and then encrypt
 -- Requirements : update and select privileges
 -- Call Syntax  : call p_encrypt;
 -- Last Modified: 13/05/2015
