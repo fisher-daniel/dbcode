@@ -1,10 +1,10 @@
 -- -----------------------------------------------------------------------------------
--- File Name    : http://www.oracle-base.com/dba/11g/admin_privs.sql
+-- File Name    : https://github.com/fisher-daniel/dbcode/edit/master/p_encrypt
 -- Author       : Dan Fisher
 -- Description  : encrypt columns 
 -- Requirements : update and select privileges
 -- Call Syntax  : call p_encrypt;
--- Last Modified: 13/05/2015
+-- Last Modified: 12/05/2015
 -- -----------------------------------------------------------------------------------
 DELIMITER $$
 
@@ -24,10 +24,8 @@ select database_name, table_name, column_name  from t_columns_encrypt;
  DECLARE CONTINUE HANDLER 
         FOR NOT FOUND SET v_finished = 1;
 
--- open the cursor based on db, table and col
+-- open the cursor based on db, table and col. for all records in the cursor,  loop
 OPEN col_cur;
-
--- for all records in the cursor,  loop
 get_col: LOOP
 
 -- fetch the cursor record value into db, table and column variable
@@ -51,11 +49,9 @@ EXECUTE dynamic_statement;
 -- tidy up 
 DEALLOCATE PREPARE dynamic_statement;
 
--- close loop
+-- close loop & end
 END LOOP get_col;
-
 END $$
-
 DELIMITER ;
 
 drop procedure p_encrypt;
