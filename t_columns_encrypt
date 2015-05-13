@@ -1,14 +1,17 @@
-CREATE TABLE `t_columns_encrypt` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `database_name` varchar(45) DEFAULT NULL,
-  `table_name` varchar(45) DEFAULT NULL,
-  `column_name` varchar(45) DEFAULT NULL,
-  `encrypted_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+
+
+CREATE TABLE t_columns_encrypt (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  database_name varchar(45) DEFAULT NULL,
+  table_name varchar(45) DEFAULT NULL,
+  column_name varchar(45) DEFAULT NULL,
+  encrypted_at datetime DEFAULT NULL,
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
 
-ALTER TABLE `utils`.`t_columns_encrypt` 
-ADD UNIQUE INDEX `UK_DB_TAB_COL` (`database_name` ASC, `table_name` ASC, `column_name` ASC);
+ALTER TABLE utils.t_columns_encrypt 
+ADD UNIQUE INDEX UK_DB_TAB_COL (database_name ASC, table_name ASC, column_name ASC);
 
-ALTER TABLE `utils`.`t_columns_encrypt` 
-ADD COLUMN `encrypted_at` DATETIME NULL DEFAULT NULL AFTER `column_name`;
+ALTER TABLE utils.t_columns_encrypt 
+ADD COLUMN encrypted_at DATETIME NULL DEFAULT NULL AFTER column_name;
+
