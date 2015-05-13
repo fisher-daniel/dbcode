@@ -10,15 +10,11 @@ DELIMITER $$
 
 CREATE PROCEDURE  `p_encrypt` ()
 BEGIN
-
--- create variable for not found handler
+-- create variable for not found handler & declare variables for the, db, table and col names strings
 DECLARE v_finished INTEGER DEFAULT 0;
-
--- declare variables for the, db, table and col names strings
 DECLARE v_db varchar(100) DEFAULT "";
 DECLARE v_tab varchar(100) DEFAULT "";
 DECLARE v_col varchar(100) DEFAULT "";
-
 
 -- create the cursor based on the encryption table values & form cols to be encrypted
 DECLARE col_cur CURSOR FOR 
@@ -47,7 +43,6 @@ SET @column_name:= v_col;
 
 -- concate strings together to a single update 
 SET @sql:=CONCAT('update ', @db_name, '.', @table_name, ' set ', @column_name, ' :=  SHA1(',@column_name, ');');
-
 
 -- prepare and execute the dynamic sql 
 PREPARE dynamic_statement FROM @sql;
