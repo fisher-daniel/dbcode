@@ -1,20 +1,24 @@
 -- -----------------------------------------------------------------------------------
--- File Name    : https://github.com/fisher-daniel/dbcode/edit/master/p_encrypt
+-- File Name    : http://www.oracle-base.com/dba/11g/admin_privs.sql
 -- Author       : Dan Fisher
 -- Description  : encrypt columns 
 -- Requirements : update and select privileges
 -- Call Syntax  : call p_encrypt;
--- Last Modified: 12/05/2015
+-- Last Modified: 13/05/2015
 -- -----------------------------------------------------------------------------------
 DELIMITER $$
 
 CREATE PROCEDURE  `p_encrypt` ()
 BEGIN
--- create variable for not found handler & declare variables for the, db, table and col names strings
+
+-- create variable for not found handler
 DECLARE v_finished INTEGER DEFAULT 0;
+
+-- declare variables for the, db, table and col names strings
 DECLARE v_db varchar(100) DEFAULT "";
 DECLARE v_tab varchar(100) DEFAULT "";
 DECLARE v_col varchar(100) DEFAULT "";
+
 
 -- create the cursor based on the encryption table values & form cols to be encrypted
 DECLARE col_cur CURSOR FOR 
@@ -24,8 +28,10 @@ select database_name, table_name, column_name  from t_columns_encrypt;
  DECLARE CONTINUE HANDLER 
         FOR NOT FOUND SET v_finished = 1;
 
--- open the cursor based on db, table and col. for all records in the cursor,  loop
+-- open the cursor based on db, table and col
 OPEN col_cur;
+
+-- for all records in the cursor,  loop
 get_col: LOOP
 
 -- fetch the cursor record value into db, table and column variable
@@ -39,9 +45,8 @@ SET @db_name:= v_db;
 SET @table_name:= v_tab;
 SET @column_name:= v_col;
 
--- concate strings together to a single update 
+-- concatenate strings together to a single update to annonymize the column
 SET @sql:=CONCAT('update ', @db_name, '.', @table_name, ' set ', @column_name, ' :=  SHA1(',@column_name, ');');
-
 -- prepare and execute the dynamic sql 
 PREPARE dynamic_statement FROM @sql;
 EXECUTE dynamic_statement;
@@ -49,10 +54,34 @@ EXECUTE dynamic_statement;
 -- tidy up 
 DEALLOCATE PREPARE dynamic_statement;
 
--- close loop & end
+-- create new values for the policy latitude such that it does not break the ui
+SET @sql:='UPDATE amfam_production.policies t1 SET t1.latitude = (SELECT (RAND() * (33.477040512464626 - 30.077090052913654)) + 30.077090052913654);';
+-- prepare and execute the dynamic sql 
+PREPARE dynamic_statement FROM @sql;
+EXECUTE dynamic_statement;
+
+-- tidy up 
+DEALLOCATE PREPARE dynamic_statement;
+
+
+-- create new values for the policy longitude such that it does not break the ui
+SET @sql:='UPDATE amfam_production.policies t1 SET t1.longitude = (SELECT (RAND() * (- 111.895985 - - 109.895985)) + - 108.895985);';
+-- prepare and execute the dynamic sql 
+PREPARE dynamic_statement FROM @sql;
+EXECUTE dynamic_statement;
+
+-- tidy up 
+DEALLOCATE PREPARE dynamic_statement;
+
+
+-- close loop
 END LOOP get_col;
+
 END $$
+
 DELIMITER ;
+
+select @sql;
 
 drop procedure p_encrypt;
 call p_encrypt;
