@@ -1,5 +1,5 @@
 -- -----------------------------------------------------------------------------------
--- File Name    : http://www.oracle-base.com/dba/11g/admin_privs.sql
+-- File Name    : https://github.com/fisher-daniel/dbcode/blob/master/p_encrypt
 -- Author       : Dan Fisher
 -- Description  : encrypt columns 
 -- Requirements : update and select privileges
